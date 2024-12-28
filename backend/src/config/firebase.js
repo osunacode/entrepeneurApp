@@ -1,10 +1,8 @@
 import admin from "firebase-admin";
-import serviceAccount from "../../serviceAccountKey.json" assert { type: "json" };
+import serviceAccountKey from "./serviceAccountKey.json" assert { type: "json" };
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(serviceAccountKey),
 });
 
-const db = admin.firestore();
-
-export default db;
+export const db = admin.firestore();
