@@ -1,8 +1,13 @@
 import admin from "firebase-admin";
-import serviceAccountKey from "./serviceAccountKey.json" assert { type: "json" };
+import serviceAccount from "./serviceAccountKey.json" assert { type: "json" };
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountKey),
-});
+// Verifica si ya existe una app de Firebase antes de inicializarla
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+} else {
+  admin.app(); // Usa la app ya existente
+}
 
 export const db = admin.firestore();
