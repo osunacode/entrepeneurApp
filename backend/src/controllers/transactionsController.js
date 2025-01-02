@@ -34,7 +34,6 @@ export const getTransactions = async (req, res) => {
 };
 
 // Obtener transacción por ID
-// Obtener transacción por ID
 export const getTransactionByID = async (req, res) => {
   try {
     const userId = req.userId;

@@ -6,7 +6,9 @@ import {
   deleteUser,
   updateUser,
 } from "../controllers/usersController.js";
+
 import transactionsRoutes from "./transactionsRoutes.js";
+import productsRoutes from "./productsRoutes.js";
 
 const router = express.Router();
 
@@ -31,6 +33,21 @@ router.use(
     next();
   },
   transactionsRoutes
+);
+
+router.use(
+  "/:userId/products",
+  (req, res, next) => {
+    req.userId = req.params.userId; // Propaga el userId
+    next();
+  },
+  (req, res, next) => {
+    if (req.params.productId) {
+      req.productId = req.params.productId; // Propaga el productId si está presente
+    }
+    next();
+  },
+  productsRoutes
 );
 
 export default router;

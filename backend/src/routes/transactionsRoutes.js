@@ -9,11 +9,6 @@ import {
 
 const router = express.Router();
 
-router.use((req, res, next) => {
-  console.log(`Transactions Middleware: req.params`, req.params);
-  next();
-});
-
 // Rutas para finanzas
 router.get("/", getTransactions);
 router.get("/:transactionId", getTransactionByID);

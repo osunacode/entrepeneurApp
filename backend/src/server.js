@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 
 import userRoutes from "./routes/userRoutes.js";
 import transactionsRoutes from "./routes/transactionsRoutes.js";
+import productsRoutes from "./routes/productsRoutes.js";
 
 // Configuración del servidor
 const app = express();
@@ -19,10 +20,12 @@ app.use((req, res, next) => {
 
 // Rutas
 app.use("/api/users", userRoutes);
-app.use(transactionsRoutes);
+app.use("/api/users/:userId/transactions", transactionsRoutes);
+app.use("/api/users/:userId/products", productsRoutes);
 
 // Puerto del servidor
 const PORT = process.env.PORT || 1506;
+
 app.listen(PORT, () => {
   console.log(`Server running on Port ${PORT}`);
 });
